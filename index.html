@@ -128,22 +128,22 @@
         </ul>
     </div>
 
-    <script>
-        window.addEventListener('load', function() {
-            // Najde elementy preloaderu a těla webu
-            var preloader = document.getElementById('preloader');
-            var body = document.body;
+<script>
+    window.addEventListener('load', function() {
+        var preloader = document.getElementById('preloader');
+        var body = document.body;
 
-            // Přidá třídy, které spustí CSS tranzice (zmizení a objevení)
+        // Nastavíme zpoždění 2000 milisekund (2 sekundy)
+        setTimeout(function() {
             preloader.classList.add('hidden');
             body.classList.add('loaded');
 
-            // Odstraní preloader z HTML úplně po dokončení animace (pro jistotu)
             setTimeout(function() {
                 preloader.style.display = 'none';
-            }, 500); // 500ms odpovídá délce transition v CSS
-        });
-    </script>
+            }, 500); 
+        }, 2000); // Tady si můžeš čas upravit (1000 = 1 sekunda)
+    });
+</script>
 
 </body>
 </html>
