@@ -5,28 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Printing Legion | My Dashboard</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f9; color: #333; }
-        header { background: #24292e; color: white; padding: 1rem; text-align: center; border-radius: 8px; }
-        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .status-badge { background: #28a745; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; }
+        /* Základní styly */
+        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f0f2f5; color: #1c1e21; }
+        
+        /* Horní lišta */
+        header { background: #24292e; color: white; padding: 2rem 1rem; text-align: center; }
+        
+        /* Navigační menu */
+        nav { background: #343a40; display: flex; justify-content: center; padding: 10px; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: #007bff; }
+
+        /* Hlavní kontejner */
+        .container { 
+            max-width: 900px; 
+            margin: 30px auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        /* Efekt pro kartu při najetí myší */
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Status badge s PULZUJÍCÍ ANIMACÍ */
+        .status-badge { 
+            background: #28a745; 
+            color: white; 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            vertical-align: middle; 
+            margin-left: 10px;
+            display: inline-block;
+            animation: pulse 2s infinite; /* Tady voláme animaci definovanou níže */
+            box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+        }
+
+        /* Definice animace pulzování */
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+        }
+        
+        /* Tlačítka */
+        .btn { display: inline-block; background: #007bff; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 20px; transition: 0.3s; font-weight: bold; }
+        .btn:hover { background: #0056b3; transform: scale(1.05); }
+
+        hr { border: 0; border-top: 1px solid #eee; margin: 25px 0; }
+        ul { list-style-type: '🚀 '; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Printing Legion 🚀</h1>
-        <p>Moje 3D tisková farma v Hackclubu</p>
+        <p>3D tisková farma & Hackclub Lab</p>
     </header>
+
+    <nav>
+        <a href="index.html">Domů</a>
+        <a href="sklad.html">Sklad Filamentu</a>
+        <a href="objednavka.html">Objednat Tisk</a>
+        <a href="recenze.html">Recenze</a>
+    </nav>
     
     <div class="container">
-        <h2>Aktuální stav tiskáren <span class="status-badge">Online</span></h2>
-        <p>Vítej na mém webu! Tady brzy uvidíš seznam filamentů, formuláře pro tisk a recenze mých výtvorů.</p>
+        <h2>Dashboard <span class="status-badge">Systém Online</span></h2>
+        <p>Vítej v řídícím centru <strong>Printing Legion</strong>. Tento web slouží pro správu tiskových úloh a přehled o dostupném materiálu.</p>
+        
         <hr>
-        <h3>Co plánuji:</h3>
+
+        <h3>Rychlé akce</h3>
+        <p>Potřebuješ něco vytisknout pro svůj projekt?</p>
+        <a href="objednavka.html" class="btn">Vytvořit novou objednávku</a>
+
+        <hr>
+        
+        <h3>Aktuální cíle rozvoje:</h3>
         <ul>
-            <li>Propojení s domácím serverem (CasaOS)</li>
-            <li>Live stav zásob filamentu</li>
-            <li>Formulář pro objednávky tisku</li>
+            <li><strong>Fáze 1:</strong> Spuštění webu na GitHub Pages (HOTOVO)</li>
+            <li><strong>Fáze 2:</strong> Propojení s databází v CasaOS (V přípravě)</li>
+            <li><strong>Fáze 3:</strong> Automatizace stavu filamentu pomocí vah</li>
         </ul>
     </div>
+
 </body>
 </html>
