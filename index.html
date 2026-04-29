@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Printing Legion | My Dashboard</title>
     <style>
-        /* 1. KRITICKÉ STYLY PRO PRELOADER - Musí být první */
+        /* --- 1. OPRAVENÁ EPICKÁ NAČÍTACÍ ANIMACE --- */
         #preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #1a1a1d !important; /* Vynutíme černou barvu */
+            background-color: #1a1a1d !important; /* Okamžitá černá barva */
             z-index: 99999;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             visibility: visible;
             opacity: 1;
             transition: opacity 0.5s ease, visibility 0.5s ease;
@@ -32,7 +32,7 @@
             width: 50px;
             height: 50px;
             background-color: #007bff;
-            animation: cube-spin 2s infinite ease-in-out;
+            animation: cube-spin 2s infinite ease-in-out, pulse-blue 2s infinite ease-in-out;
             border-radius: 8px;
             margin-bottom: 20px;
             box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
@@ -42,8 +42,8 @@
             color: white;
             font-family: 'Segoe UI', sans-serif;
             font-size: 1.2rem;
-            letter-spacing: 3px;
-            font-weight: bold;
+            letter-spacing: 2px;
+            animation: text-fade 1.5s infinite ease-in-out;
         }
 
         @keyframes cube-spin {
@@ -52,27 +52,82 @@
             100% { transform: scale(1) rotate(360deg); }
         }
 
-        /* 2. STYLY ZBYTKU WEBU */
-        body { 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
-            margin: 0; 
-            background-color: #f0f2f5; 
+        @keyframes text-fade {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
-        /* Obsah webu zpočátku neřešíme, preloader ho překryje */
-        header { background: #24292e; color: white; padding: 2rem 1rem; text-align: center; }
-        nav { background: #343a40; display: flex; justify-content: center; padding: 10px; position: sticky; top: 0; }
-        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        .container { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        /* --- 2. STYLY WEBU --- */
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f0f2f5; 
+            color: #1c1e21; 
+            opacity: 0; /* Web se objeví až po načtení */
+            transition: opacity 0.5s ease; 
+        }
         
-        .status-badge { background: #28a745; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; display: inline-block; animation: pulse 2s infinite; }
+        body.loaded { opacity: 1; }
+
+        header { background: #24292e; color: white; padding: 2rem 1rem; text-align: center; }
+        
+        nav { 
+            background: #343a40; 
+            display: flex; 
+            justify-content: center; 
+            padding: 10px; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+        }
+        
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; font-size: 0.9rem; transition: 0.3s; }
+        nav a:hover { color: #007bff; }
+
+        .container { 
+            max-width: 900px; 
+            margin: 30px auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        
+        .container:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        
+        .status-badge { 
+            background: #28a745; 
+            color: white; 
+            padding: 6px 12px; 
+            border-radius: 20px; 
+            font-size: 0.85rem; 
+            vertical-align: middle; 
+            margin-left: 10px; 
+            display: inline-block; 
+            animation: pulse 2s infinite; 
+            box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); 
+        }
+
         @keyframes pulse {
             0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7); }
             70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
         }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+        }
         
-        .btn { display: inline-block; background: #007bff; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 20px; font-weight: bold; }
+        .btn { display: inline-block; background: #007bff; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 20px; transition: 0.3s; font-weight: bold; }
+        .btn:hover { background: #0056b3; transform: scale(1.05); }
+        hr { border: 0; border-top: 1px solid #eee; margin: 25px 0; }
+        ul { list-style-type: '🚀 '; }
+        li { margin-bottom: 10px; }
     </style>
 </head>
 <body>
@@ -95,21 +150,36 @@
     </nav>
     
     <div class="container">
-        <h2>Dashboard <span class="status-badge">Systém Online</span></h2>
-        <p>Vítej v řídícím centru <strong>Printing Legion</strong>.</p>
+        <h2>Dashboard <span class="status-badge">Online</span></h2>
+        <p>Vítej v řídícím centru <strong>Printing Legion</strong>. Tento web slouží pro správu tiskových úloh a přehled o dostupném materiálu.</p>
+        
+        <hr>
+
+        <h3>Rychlé akce</h3>
+        <p>Potřebuješ něco vytisknout pro svůj projekt?</p>
         <a href="objednavka.html" class="btn">Vytvořit novou objednávku</a>
+
+        <hr>
+        
+        <h3>Aktuální cíle rozvoje:</h3>
+        <ul>
+            <li><strong>Fáze 1:</strong> Spuštění webu na GitHub Pages (HOTOVO)</li>
+            <li><strong>Fáze 2:</strong> Propojení s databází v CasaOS (V přípravě)</li>
+            <li><strong>Fáze 3:</strong> Automatizace stavu filamentu pomocí vah</li>
+        </ul>
     </div>
 
     <script>
-        // Použijeme DOMContentLoaded, což je rychlejší než 'load'
-        document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function() {
             var preloader = document.getElementById('preloader');
-            
-            // Počkáme 2 sekundy, aby si uživatel užil animaci
+            var body = document.body;
+
+            // Umělé zpoždění 2 sekundy, aby byla animace vidět
             setTimeout(function() {
                 preloader.classList.add('hidden');
-                
-                // Po skončení animace zmizení (0.5s) preloader úplně odstraníme
+                body.classList.add('loaded');
+
+                // Po skončení CSS transition (0.5s) preloader úplně vypneme
                 setTimeout(function() {
                     preloader.style.display = 'none';
                 }, 500);
