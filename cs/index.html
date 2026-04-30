@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Printing Legion | Stránka ve výstavbě</title>
+    <title>Domů | Stránka ve výstavbě</title>
     <style>
         /* --- 1. PRELOADER --- */
         #preloader {
@@ -235,6 +235,35 @@
     <p class="copyright">
         Made with ❤️ by <a href="https://github.com/Matyas604" target="_blank">@Matyas604</a>
     </p>
+
+    <style>
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 600px) {
+            .construction-container {
+                padding: 40px 20px;
+                width: 92%;
+            }
+            .construction-container h1 {
+                font-size: 1.6rem;
+            }
+            .construction-container p {
+                font-size: 1rem;
+            }
+            .status-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+            }
+            .lang-switch {
+                top: 15px;
+                right: 15px;
+            }
+            .lang-switch a {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

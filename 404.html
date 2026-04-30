@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Printing Legion | 404 - Object Not Found</title>
+    <title>404 - Object Not Found</title>
     <style>
         /* --- 1. PRELOADER --- */
         #preloader {
@@ -168,6 +168,32 @@
     </p>
 
     <script>
+        /* Mobile adjustment for 404 */
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 600px) {
+                .error-container {
+                    padding: 40px 20px;
+                    width: 92%;
+                }
+                .error-code {
+                    font-size: 4.5rem;
+                }
+                .error-container h1 {
+                    font-size: 1.4rem;
+                }
+                .status-info {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .btn-home {
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
         document.addEventListener('DOMContentLoaded', function() {
             var preloader = document.getElementById('preloader');
             var body = document.body;
