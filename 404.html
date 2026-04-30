@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Printing Legion | Page Under Construction</title>
+    <title>Printing Legion | 404 - Object Not Found</title>
     <style>
         /* --- 1. PRELOADER --- */
         #preloader {
@@ -60,7 +60,7 @@
             50% { opacity: 1; }
         }
 
-        /* --- 2. PAGE STYLES --- */
+        /* --- 2. PAGE STYLES (MATCHING INDEX) --- */
         body { 
             font-family: 'JetBrains Mono', 'Segoe UI', monospace; 
             margin: 0; 
@@ -75,132 +75,66 @@
             height: 100vh; overflow: hidden;
         }
         
-        .construction-container {
+        .error-container {
             background: rgba(20, 20, 25, 0.8);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
             padding: 60px; border-radius: 24px; text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.03);
-            border: 1px solid rgba(0, 123, 255, 0.2);
+            border: 1px solid rgba(255, 50, 50, 0.3); /* Reddish tint for error */
             max-width: 600px; width: 90%;
             opacity: 0; transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        body.loaded .construction-container { opacity: 1; transform: translateY(0); }
+        body.loaded .error-container { opacity: 1; transform: translateY(0); }
 
-        .construction-container h1 {
-            margin-top: 0; font-size: 2.2rem; letter-spacing: 1px; color: #ffffff;
+        .error-code {
+            font-size: 6rem; font-weight: bold; margin: 0; color: #ff3333;
+            text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+            letter-spacing: -5px;
         }
 
-        .construction-container p {
+        .error-container h1 {
+            margin-top: 0; font-size: 1.8rem; letter-spacing: 1px; color: #ffffff;
+        }
+
+        .error-container p {
             color: #cccccc; font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6;
-        }
-
-        /* --- 3. PRINT ANIMATION --- */
-        .printing-animation {
-            width: 100%; height: 12px; background: rgba(0,0,0,0.3);
-            border-radius: 10px; position: relative; margin-bottom: 20px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
-        }
-
-        .printing-progress {
-            height: 100%; width: 0%;
-            background: linear-gradient(90deg, #007bff, #00d2ff);
-            box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
-            border-radius: 10px;
-            animation: print-progress 5s infinite ease-in-out;
-            position: relative;
-        }
-
-        .printing-nozzle {
-            position: absolute; top: -10px; right: -10px; width: 20px; height: 20px;
-            background: #00d2ff; border-radius: 50%;
-            box-shadow: 0 0 20px #007bff, 0 0 40px #007bff;
-            animation: nozzle-pulse 1s infinite alternate;
         }
 
         .status-info {
             display: flex; justify-content: space-between; font-size: 0.8rem;
-            color: #007bff; margin-top: 15px; margin-bottom: 20px;
-            text-transform: uppercase; letter-spacing: 2px;            
-            border-top: 1px solid rgba(0, 123, 255, 0.2); /* Modrá čára nahoře */
-            border-bottom: 1px solid rgba(0, 123, 255, 0.2); /* Modrá čára dole */
-            padding: 10px 0; /* Odsazení pro čáry */
+            color: #ff3333; margin-top: 15px; margin-bottom: 30px;
+            text-transform: uppercase; letter-spacing: 2px;
+            border-top: 1px solid rgba(255, 51, 51, 0.2);
+            border-bottom: 1px solid rgba(255, 51, 51, 0.2);
+            padding: 10px 0;
         }
 
-        @keyframes print-progress {
-            0% { width: 5%; } 50% { width: 95%; } 100% { width: 5%; }
+        .btn-home {
+            display: inline-block; background: #007bff; color: white;
+            padding: 12px 30px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+        }
+        .btn-home:hover {
+            background: #0056b3; transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
         }
 
-        @keyframes nozzle-pulse {
-            from { transform: scale(0.9); opacity: 0.8; }
-            to { transform: scale(1.1); opacity: 1; }
-        }
-
-        /* Language Switcher */
-        .lang-switch {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100000;
-            opacity: 0;
-            transition: opacity 0.8s ease;
+        /* --- COPYRIGHT (MATCHING INDEX) --- */
+        .copyright {
+            position: fixed; bottom: 20px; left: 0; width: 100%;
+            text-align: center; font-size: 0.75rem; color: rgba(255, 255, 255, 0.4);
+            z-index: 9999; opacity: 0; transition: opacity 0.8s ease;
             pointer-events: none;
         }
-        body.loaded .lang-switch {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .lang-switch a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid #007bff;
-            padding: 5px 12px;
-            border-radius: 6px;
-            transition: 0.3s;
-            background: rgba(20, 20, 25, 0.6);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            font-weight: bold;
-        }
-        .lang-switch a:hover {
-            background: #007bff;
-            color: white;
-        }
-        /* Copyright Styles */
-        .copyright {
-            position: fixed;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: 0.75rem; /* Slightly smaller */
-            color: rgba(255, 255, 255, 0.4); /* More subtle color */
-            z-index: 9999; /* Below preloader, above main content */
-            opacity: 0; /* Hidden initially */
-            transition: opacity 0.8s ease;
-            pointer-events: none; /* Not clickable until visible */
-        }
-        body.loaded .copyright {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .copyright a {
-            color: rgba(0, 123, 255, 0.7); /* Subtle blue link */
-            text-decoration: none;
-        }
-        .copyright a:hover {
-            color: #007bff; /* Brighter blue on hover */
-            text-decoration: underline;
-        }
+        body.loaded .copyright { opacity: 1; pointer-events: auto; }
+        .copyright a { color: rgba(0, 123, 255, 0.7); text-decoration: none; }
+        .copyright a:hover { color: #007bff; text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="lang-switch">
-        <a href="cs">CZ</a>
-    </div>
-
     <div id="preloader">
         <div class="cube-wrapper">
             <div class="cube">
@@ -212,24 +146,21 @@
                 <div class="cube-face bottom"></div>
             </div>
         </div>
-        <div class="loader-text">Initializing Print...</div>
+        <div class="loader-text">Analyzing error...</div>
     </div>
 
-    <div class="construction-container">
-        <h1>Site is printing...</h1>
-        <p>This page is currently being printed layer by layer. <br>Please come back later when the print job is complete.</p>
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <h1>G-Code Not Found</h1>
+        <p>It seems like the model you are looking for has been removed from the print bed or the extruder lost its way.</p>
         
         <div class="status-info">
-            <span>Temp: 215°C</span>
-            <span>Layer: 42/100</span>
-            <span>Speed: 60mm/s</span>
+            <span>Error: M404</span>
+            <span>Bed: Cooling</span>
+            <span>Status: Halted</span>
         </div>
 
-        <div class="printing-animation">
-            <div class="printing-progress">
-                <div class="printing-nozzle"></div>
-            </div>
-        </div>
+        <a href="matyas604.github.io" class="btn-home">Return to Home</a>
     </div>
 
     <p class="copyright">
@@ -247,7 +178,7 @@
                 setTimeout(function() {
                     preloader.style.display = 'none';
                 }, 500);
-            }, 2000);
+            }, 1500); // Slightly faster preloader for 404
         });
     </script>
 </body>
